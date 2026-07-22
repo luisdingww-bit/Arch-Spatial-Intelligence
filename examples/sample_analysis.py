@@ -40,6 +40,6 @@ print()
 print("--- Design Comparison ---")
 comparison = analyzer.compare_designs([('Scheme A', scheme_a), ('Scheme B', scheme_b)])
 for c in comparison:
-    print(f"  {c[chr(39)+chr(39)+chr(39)]}")
+        print("  " + c["name"] + ": Overall = " + str(round(c["overall_score"], 3)))
 
 print("Done!")
