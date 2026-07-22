@@ -1,4 +1,4 @@
-﻿"""
+"""
 Arch-Spatial-Intelligence — Spatial Analyzer
 ==============================================
 Core module for analyzing architectural spatial configurations.
