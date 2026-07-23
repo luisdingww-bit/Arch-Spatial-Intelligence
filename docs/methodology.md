@@ -1,52 +1,18 @@
-﻿# Data
+# Methodology — Arch-Spatial-Intelligence
 
-Place your spatial analysis data here:
-- Floor plan JSON files
-- Room connectivity CSV files
-- Site boundary GeoJSON files
-- Building facade images
+## 1. Input
+A room program: a set of spaces, each with a centroid and an adjacency relation (shared wall / direct access).
 
-## Format
+## 2. Graph construction
+Each room becomes a node; adjacencies are undirected edges. Edge weight defaults to 1 (topological depth).
 
-Room data should follow this structure:
-`json
-{
-  \"name\": \"Room Name\",
-  \"area\": 100,
-  \"type\": \"public|private|circulation\",
-  \"connections\": [0, 1, 2],
-  \"level\": 0
-}
-`
-"@ | Out-File -FilePath "C:\Users\12275\Documents\Codex\2026-07-22\neng\outputs\github\Arch-Spatial-Intelligence\data\README.md" -Encoding UTF8
+## 3. Spatial metrics
+- **Connectivity** — degree of each node.
+- **Integration / Depth** — all-pairs shortest path (Floyd–Warshall); mean depth per node, lower = more integrated.
+- **Diversity** — entropy of the local connectivity distribution.
 
-# docs 占位
-@"
-# Documentation
+## 4. Design comparison
+Alternative schemes are scored by a weighted sum of the metrics above and ranked via `compare_designs()`.
 
-## Methodology
-
-### Space Syntax Analysis
-The spatial analyzer uses graph-theoretic methods to compute:
-- **Connectivity**: Number of direct connections per space
-- **Integration**: How integrated a space is in the overall system
-- **Choice**: How likely a space is to be passed through
-
-### Facade Classification
-Computer vision analysis of building facades:
-- Architectural style matching
-- Window-to-wall ratio computation
-- Symmetry and regularity analysis
-
-### Report Generation
-Automated report generation in Markdown format:
-- Spatial metrics summary
-- Design comparison tables
-- Facade analysis results
-
-## Output Format
-
-Reports are generated as Markdown files that can be:
-- Viewed directly on GitHub
-- Exported to PDF
-- Embedded in portfolio documentation
+## 5. Output
+A Markdown report (`report_generator.py`) summarizing per-scheme metrics and the ranked comparison.
